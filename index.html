@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="MyAngular">
 <head>
     <meta charset="UTF-8">
     <title>AngularJS</title>
@@ -15,9 +15,24 @@
             color: #222;
             margin: 5em;
         }
+        hr{
+            height: 1px;
+            border: none;
+            background-color: #ccc;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
+    <h1>Data Model</h1>
+    <div>
+        <input type="text" ng-model="band">
+        <p>My Cellphone Brand : {{band}}</p>
+    </div>
+
+    <hr>
+
+    <h1>Show - Hide Directive</h1>
     <div>
         <input type="text" ng-model="name">
         <input type="checkbox" ng-model="checked">
@@ -29,5 +44,31 @@
     <div ng-hide="checked">
         Bye, {{name || "world"}}!
     </div>
+
+    <hr>
+
+    <h1>Repeat List and Filter</h1>
+    <div>
+        <input type="search" ng-model="search">
+    </div>
+    <div ng-controller="List">
+        <ul>
+            <li ng-repeat="name in names | filter:search">{{name}}</li>
+        </ul>
+        <ul>
+            <li ng-repeat="person in members | filter:search">{{person.name}} {{person.age}}</li>
+        </ul>
+    </div>
+    <script>
+        var app = angular.module('MyAngular', []);
+        app.controller('List',function($scope){
+            $scope.names = ["Tom", "Jeffrey", "Dan", "David"];
+            $scope.members = [
+                {name: "Tom", age: 20},
+                {name: "Jeffrey", age: 30},
+                {name: "Dan", age: 40}
+            ];
+        });
+    </script>
 </body>
 </html>
