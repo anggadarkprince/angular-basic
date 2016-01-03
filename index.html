@@ -78,6 +78,23 @@
             <button ng-click="add()">Add</button>
         </div>
     </div>
+
+    <hr>
+
+    <h1>Change</h1>
+    <div ng-controller="Browser">
+        <div>
+            <label>url</label>
+            <input type="text" value="edit/{{path}}">
+        </div>
+        <div>
+            <label>Update the url:</label>
+            <input type="text" ng-change="clean()" ng-model="path">
+        </div>
+    </div>
+
+    
+
     <script>
         var app = angular.module('MyAngular', []);
         app.controller('List',function($scope){
@@ -101,6 +118,14 @@
 
             $scope.remove = function(index){
                 $scope.members.splice(index, 1)
+            }
+        });
+
+        app.controller('Browser',function($scope){
+            $scope.clean = function(){
+                $scope.path = $scope.path
+                        .replace(/\s+/g, '-')
+                        .replace(/[^a-z0-9-]/ig,'');
             }
         });
 
