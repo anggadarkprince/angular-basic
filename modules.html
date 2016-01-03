@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyAngular">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+    <script src="js/libs/angular/angular.min.js"></script>
+    <style>
+        *{
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        body{
+            font: 16px/1.5 sans-serif;
+            color: #222;
+            margin: 5em;
+        }
+        div{
+            margin-bottom: 10px;
+        }
+        label{
+            min-width: 140px;
+            display: inline-block;
+        }
+        input,label{
+            margin-bottom: 5px;
+        }
+        hr{
+            height: 1px;
+            border: none;
+            background-color: #ccc;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Model</h1>
+    <div ng-controller="MyModule">
+        <p>{{name}}</p>
+    </div>
+
+    <hr>
+
+    <script>
+        var app = angular.module('MyAngular', []);
+        var a = app.controller('MyModule',['$scope', function($b){
+            $b.name = "Angga Ari Wijaya";
+        }]);
+    </script>
+</body>
+</html>
