@@ -48,6 +48,8 @@
         <ul>
             <li ng-repeat="person in people | orderBy:'lastname':false">{{person.firstname}} {{person.lastname}}</li>
         </ul>
+
+        <p>{{text | clean:'+'}}</p>
     </div>
 
     <script>
@@ -63,6 +65,16 @@
                 {firstname: "Jeffrey", lastname: "Way"},
                 {firstname: "Angga", lastname: "Ari"}
             ];
+
+            $scope.text = "Hello world, this is some text!";
+        });
+        app.filter('clean', function(){
+            return function (input, separator){
+                var filter = new RegExp('[^a-zA-Z0-9'+ (separator || '-') +']', 'ig');
+                return input.toLowerCase()
+                        .replace(/\s+/g, separator || '-')
+                        .replace(filter, '');
+            }
         });
     </script>
 </body>
