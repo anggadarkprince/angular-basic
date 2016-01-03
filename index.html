@@ -21,6 +21,9 @@
             background-color: #ccc;
             margin: 20px 0;
         }
+        .first-true{
+            background-color: aqua;
+        }
     </style>
 </head>
 <body>
@@ -56,8 +59,24 @@
             <li ng-repeat="name in names | filter:search">{{name}}</li>
         </ul>
         <ul>
-            <li ng-repeat="person in members | filter:search">{{person.name}} {{person.age}}</li>
+            <li ng-repeat="person in members | filter:search">
+                {{person.name}} {{person.age}}
+                <button ng-click="remove($index)" class="first-{{$first}}">x</button>
+                <span ng-show="$first">First!</span>
+                <span ng-show="$middle">Middle!</span>
+                <span ng-show="$last">Last!</span>
+            </li>
         </ul>
+
+        <span>There are {{members.length}} people in the member list.</span><br><br>
+        
+        <div>
+            <label>Name:</label>
+            <input type="text" ng-model="new_name"><br>
+            <label>Age:</label>
+            <input type="number" ng-model="new_age"><br>
+            <button ng-click="add()">Add</button>
+        </div>
     </div>
     <script>
         var app = angular.module('MyAngular', []);
@@ -66,9 +85,25 @@
             $scope.members = [
                 {name: "Tom", age: 20},
                 {name: "Jeffrey", age: 30},
-                {name: "Dan", age: 40}
+                {name: "Dan", age: 40},
+                {name: "Angga", age: 45}
             ];
+
+            $scope.add = function(){
+                $scope.members.push({
+                    name: $scope.new_name,
+                    age: $scope.new_age
+                });
+
+                $scope.new_name = "";
+                $scope.new_age = "";
+            };
+
+            $scope.remove = function(index){
+                $scope.members.splice(index, 1)
+            }
         });
+
     </script>
 </body>
 </html>
