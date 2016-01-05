@@ -14,13 +14,15 @@
             <input type="radio" ng-model="direction" name="direction" id="descending" value="reverse"> descending
         </label>
     </div>
-    <ul class="artistlist">
-        <li class="artist cf" ng-repeat="item in artists | limitTo:10 | filter:query | orderBy:artistOrder:direction">
-            <img ng-src="../../img/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
-            <div class="info">
-                <h2>{{item.name}}</h2>
-                <h3>{{item.reknown}}</h3>
-            </div>
+    <ul class="artistlist" ng-show="query">
+        <li ng-animate="'animate'" class="artist cf" ng-repeat="item in artists | limitTo:10 | filter:query | orderBy:artistOrder:direction">
+            <a href="#/detail/{{artists.indexOf(item)}}">
+                <img ng-src="../../img/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
+                <div class="info">
+                    <h2>{{item.name}}</h2>
+                    <h3>{{item.reknown}}</h3>
+                </div>
+            </a>
         </li>
     </ul>
 </section>

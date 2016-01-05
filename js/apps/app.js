@@ -3,7 +3,9 @@
  */
 var app = angular.module('myApp', [
     'ngRoute',
-    'artistController'
+    'ngAnimate',
+    'artistController',
+    'detailController'
 ]);
 
 app.config(['$routeProvider', function($routeProvider){
@@ -11,6 +13,10 @@ app.config(['$routeProvider', function($routeProvider){
         .when('/list', {
             templateUrl: 'partials/list.html',
             controller: 'ListController'
+        })
+        .when('/detail/:itemId', {
+            templateUrl: 'partials/detail.html',
+            controller: 'DetailController'
         })
         .otherwise({
             redirectTo: '/list'
