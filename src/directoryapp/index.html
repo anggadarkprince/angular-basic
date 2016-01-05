@@ -1,14 +1,31 @@
-<html ng-app>
+<html ng-app="myApp">
 <head>
-	<title>Demo</title>
+	<title>People Directory</title>
+    <!-- stylesheet -->
 	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- angular -->
 	<script type="text/javascript" src="../../js/libs/angular/angular.min.js"></script>
 	<script type="text/javascript" src="../../js/libs/angular/angular-route.min.js"></script>
 	<script type="text/javascript" src="../../js/libs/angular/angular-resource.min.js"></script>
+    <!-- jquery -->
+    <script type="text/javascript" src="../../js/libs/jquery/jquery-2.0.3.min.js"></script>
+    <!-- bootstrap -->
     <script type="text/javascript" src="../../js/libs/bootstrap/bootstrap.min.js"></script>
+    <!-- application -->
+    <script type="text/javascript" src="../../js/apps/controllers.js"></script>
 </head>
 <body>
-	<h1>Welcome {{name}}!</h1>
-	<input placeholder="type your name..." ng-model="name" />
+<div class="main" ng-controller = "MyController">
+    <ul class="artistlist">
+        <li class="artist cf" ng-repeat="item in artists">
+            <img ng-src="../../img/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
+            <div class="info">
+                <h2>{{item.name}}</h2>
+                <h3>{{item.reknown}}</h3>
+            </div>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
